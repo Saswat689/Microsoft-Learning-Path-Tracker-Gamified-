@@ -1,6 +1,12 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+//some railway bs
+import crypto from "crypto";
+if (!globalThis.crypto) {
+  globalThis.crypto = crypto;
+}
+
 import app from "./src/app.js";
 import connectDB from "./src/config/db.js";
 
