@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microsoft Learn Path Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Space & Stars Background -->
+      <div class="bg-space">
+        <div class="starfield-deep"></div>
+        <div class="starfield"></div>
+      </div>
+
+      <!-- HUD Header -->
+      <header>
+        <div class="user-profile">
+          <div class="avatar">🚀</div>
+          <div>
+            <div class="user-name" id="user-id-display">
+              Student ID: user_101
+            </div>
+            <div class="user-progress" id="user-progress">
+              Path Progress: 0%
+            </div>
+          </div>
+        </div>
+
+        <div class="hud-stats">
+          <select id="domain-picker" class="domain-select">
+            <option value="cloud">Domain: Cloud Computing</option>
+            <option value="ai">Domain: AI & Data</option>
+          </select>
+          <button class="btn-audio" id="toggle-audio">🔊 Sound: ON</button>
+        </div>
+      </header>
+
+      <!-- Interactive Path Viewport -->
+      <main id="map-viewport">
+        <svg class="map-path" id="svg-path">
+          <path
+            id="path-line"
+            fill="none"
+            stroke="#00f0ff"
+            stroke-width="2"
+            stroke-dasharray="6, 6"
+          />
+        </svg>
+
+        <!-- Learning Path Stations -->
+        <div id="platforms-container"></div>
+
+        <!-- Navigable Vehicle Rocket -->
+        <div id="vehicle">
+          <div class="thruster-flame" id="thruster"></div>
+          <div class="ship-icon">🚀</div>
+        </div>
+
+        <div class="controls-hint" id="controls-hint">
+          ⌨️ Navigate with W, A, S, D or Arrow Keys to reach Microsoft Learn
+          stations!
+        </div>
+      </main>
+
+      <!-- Mission / Cert Modal -->
+      <div class="modal-overlay" id="level-modal">
+        <div class="modal-card">
+          <h2 id="modal-title">Cert Title</h2>
+          <p
+            id="modal-code"
+            style="font-size: 12px; color: #38bdf8; margin-top: 4px"
+          ></p>
+
+          <div class="ai-box">
+            <strong>🤖 AI Path Recommendation:</strong>
+            <p id="ai-explanation-text">Loading recommendation...</p>
+          </div>
+
+          <button class="btn-action" id="btn-complete-step">
+            MARK AS COMPLETED
+          </button>
+          <div>
+            <a id="learn-link" href="#" target="_blank" class="btn-learn"
+              >🔗 View on Microsoft Learn</a
+            >
+          </div>
+          <button class="btn-close" id="btn-close-modal">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

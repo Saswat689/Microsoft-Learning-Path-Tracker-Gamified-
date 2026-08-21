@@ -1,0 +1,390 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #050510;
+  color: #ffffff;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Deep Space & Starfield Background */
+/* Deep Space & Starfield Background */
+.bg-space {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at center,
+    #111827 0%,
+    #030712 70%,
+    #000000 100%
+  );
+}
+
+/* Layer 1: Foreground Moving & Twinkling Stars */
+.starfield {
+  position: absolute;
+  inset: -100px;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 70px 120px, #00f0ff, rgba(0, 0, 0, 0)),
+    radial-gradient(3px 3px at 150px 40px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 220px 180px, #38bdf8, rgba(0, 0, 0, 0)),
+    radial-gradient(3px 3px at 280px 90px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 340px 220px, #a855f7, rgba(0, 0, 0, 0)),
+    radial-gradient(2.5px 2.5px at 390px 150px, #ffffff, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  animation:
+    moveStars 60s linear infinite,
+    twinkle 2.5s ease-in-out infinite alternate;
+}
+
+/* Layer 2: Deep Background Slow-Moving Stars */
+.starfield-deep {
+  position: absolute;
+  inset: -100px;
+  background-image:
+    radial-gradient(1.5px 1.5px at 50px 80px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(1.5px 1.5px at 120px 200px, #38bdf8, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 200px 100px, #ffffff, rgba(0, 0, 0, 0)),
+    radial-gradient(1.5px 1.5px at 310px 260px, #00f0ff, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 350px 350px;
+  opacity: 0.6;
+  animation:
+    moveStarsDeep 120s linear infinite,
+    twinkleDeep 4s ease-in-out infinite alternate;
+}
+
+/* Animations */
+@keyframes moveStars {
+  from {
+    transform: translateY(0px) translateX(0px);
+  }
+  to {
+    transform: translateY(-250px) translateX(-125px);
+  }
+}
+
+@keyframes moveStarsDeep {
+  from {
+    transform: translateY(0px) translateX(0px);
+  }
+  to {
+    transform: translateY(-350px) translateX(175px);
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 1px #00f0ff);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px #ffffff);
+  }
+  100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 2px #38bdf8);
+  }
+}
+
+@keyframes twinkleDeep {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* Header HUD */
+header {
+  position: relative;
+  z-index: 30;
+  margin: 16px 24px 0 24px;
+  padding: 12px 24px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #00f0ff, #3b82f6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.user-progress {
+  font-size: 11px;
+  color: #38bdf8;
+}
+
+.hud-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.domain-select {
+  background: #0f172a;
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-audio {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Map Viewport */
+main {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+svg.map-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Certification Stations */
+.platform {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.platform:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.status-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.status-badge.completed {
+  background: #22c55e;
+  color: #000;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+}
+.status-badge.available {
+  background: #00f0ff;
+  color: #000;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+.status-badge.locked {
+  background: #334155;
+  color: #94a3b8;
+}
+
+.station-node {
+  width: 60px;
+  height: 48px;
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+  border: 2px solid #334155;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.station-node.completed {
+  border-color: #22c55e;
+}
+.station-node.available {
+  border-color: #00f0ff;
+}
+
+.platform-title {
+  font-size: 11px;
+  margin-top: 4px;
+  color: #e2e8f0;
+  font-weight: 600;
+  text-align: center;
+  max-width: 120px;
+}
+
+/* Navigable Vehicle */
+#vehicle {
+  position: absolute;
+  z-index: 30;
+  pointer-events: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ship-icon {
+  font-size: 32px;
+  filter: drop-shadow(0 0 8px #00f0ff);
+  transform: rotate(45deg);
+}
+
+.thruster-flame {
+  position: absolute;
+  left: -10px;
+  width: 12px;
+  height: 5px;
+  background: linear-gradient(270deg, #38bdf8, #00f0ff, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.thruster-flame.active {
+  opacity: 1;
+}
+
+/* Modal & AI Card */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 16, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 50;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid #00f0ff;
+  border-radius: 20px;
+  padding: 24px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+}
+
+.ai-box {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px dashed rgba(0, 240, 255, 0.4);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 16px 0;
+  font-size: 13px;
+  color: #cbd5e1;
+  text-align: left;
+  min-height: 60px;
+}
+
+.btn-action {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #00f0ff, #3b82f6);
+  border: none;
+  border-radius: 10px;
+  color: #050510;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-learn {
+  display: inline-block;
+  margin-top: 10px;
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: #94a3af;
+  margin-top: 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.controls-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #38bdf8;
+  z-index: 30;
+}
