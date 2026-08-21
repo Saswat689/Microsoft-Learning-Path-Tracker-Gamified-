@@ -14,5 +14,5 @@ connectDB()
     });
   })
   .catch((e) => {
-    console.log("Failed to connect to db, app crashed");
+    console.log("Failed to connect to db, app crashed.");
   });
