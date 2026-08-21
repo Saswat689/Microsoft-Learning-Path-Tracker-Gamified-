@@ -55,7 +55,7 @@ const sfx = new SoundEffects();
 
 // --- Configuration & Dynamic User ID Setup ---
 const API_BASE_URL =
-  "https://microsoft-learning-path-tracker-gamified-production.up.railway.app/";
+  "https://microsoft-learning-path-tracker-gamified-production.up.railway.app/api";
 
 function getOrCreateUserId() {
   let storedId = localStorage.getItem("learning_path_user_id");
