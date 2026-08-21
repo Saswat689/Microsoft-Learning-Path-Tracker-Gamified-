@@ -5,6 +5,6 @@
     "watchPatterns": ["backend/**"]
   },
   "deploy": {
-    "startCommand": "cd backend && npm start"
+    "startCommand": "cd backend && npm run dev"
   }
 }
